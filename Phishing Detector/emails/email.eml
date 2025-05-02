@@ -1,0 +1,944 @@
+Delivered-To: whackysea0762@gmail.com
+Received: by 2002:a2e:8690:0:b0:30b:be33:d7c0 with SMTP id l16csp42935lji;
+        Tue, 18 Mar 2025 21:34:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEl7nZ9GyIWU/se23EIiIN1bLLRlFt2CyTDlypAVdCCmvdG9VE4vOZmE7oK81oGRilIBstW
+X-Received: by 2002:a17:90b:48c6:b0:2fa:2268:1af4 with SMTP id 98e67ed59e1d1-301a5b16c26mr7615856a91.7.1742358897425;
+        Tue, 18 Mar 2025 21:34:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1742358897; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Usz2iGNQ5ead/Y7LBmL+pV1AubVMOs0TwhdGzBM8fB4nyn8np33ojiooNBILziNNdr
+         jswcIdyJvU1U8O/M5jBQ3N47kzyVNTo/Byo+iC04zgIdBG8jLI//CeG4MjofCSVhK3f9
+         Kzbp2GDvvtVYtjZdxuHcSShkbZ5txCO8JXn/AGGJmRd8iGq8XS2HNC8mxlUp6SKJ/b7H
+         G+h0dBObNSMJQsn32qwSfoLDC4TMzcMd7YDDxpiBtyj80mgWMqSngKTQQ9mw7uviM6r8
+         9xf4+kRb4esK2IJgAmj9h5O2n8W1ngEF5M7T7/eF0b0AyXVAS/HBei5EiiVvrEnf/hI0
+         bK9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:mime-version:from:date
+         :content-transfer-encoding:dkim-signature:dkim-signature;
+        bh=pLVRwhkV1y+j+Pld1JL2z33HRer0L9ur0O2q9wzLq30=;
+        fh=ANX2julaXoCrhuOV42ekVE71HAOG21oFcW1l9qgk33Y=;
+        b=asfsU4RWxctzyP6NpWpK5IAdDqELzL6Lkp2rz16v9L/y6MbWF447Q99/DAqbqvnJ44
+         FjCUC8aDvegcdNx76x7q/5undYiP9ZcXgmX/stU/JEQXHjSmWV8QuzH2VF55+Jm2X9wB
+         2GSW1EnQtJBsho9LhTmSW/FhVHBAK47BCKjhD1dXXd0DtBow1AG5Bmeuh2UqEqnUlizH
+         cJGySYCMtrLloE4hhU+9lLvWGDI9DEK8ZVlTOWd+sfQGT6QWVqGaGTFwnGO0zbiqAZOV
+         UqMfOVHVLR0avNysv0IvoeKrIzwv4+orXZ8U/qSTxogMQ8gwLzcDXnA5BOAavZCo3nSz
+         2MEw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@info.ebay.co.uk header.s=s1 header.b=X0hxCk4l;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=U16u0e2+;
+       spf=pass (google.com: domain of bounces+26618998-15a6-whackysea0762=gmail.com@em2213.info.ebay.co.uk designates 167.89.18.174 as permitted sender) smtp.mailfrom="bounces+26618998-15a6-whackysea0762=gmail.com@em2213.info.ebay.co.uk";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=ebay.co.uk
+Return-Path: <bounces+26618998-15a6-whackysea0762=gmail.com@em2213.info.ebay.co.uk>
+Received: from o1.m.reply1.ebay.com (o1.m.reply1.ebay.com. [167.89.18.174])
+        by mx.google.com with ESMTPS id d9443c01a7336-225c6bab10dsi174157675ad.551.2025.03.18.21.34.56
+        for <whackysea0762@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Mar 2025 21:34:57 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+26618998-15a6-whackysea0762=gmail.com@em2213.info.ebay.co.uk designates 167.89.18.174 as permitted sender) client-ip=167.89.18.174;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@info.ebay.co.uk header.s=s1 header.b=X0hxCk4l;
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=U16u0e2+;
+       spf=pass (google.com: domain of bounces+26618998-15a6-whackysea0762=gmail.com@em2213.info.ebay.co.uk designates 167.89.18.174 as permitted sender) smtp.mailfrom="bounces+26618998-15a6-whackysea0762=gmail.com@em2213.info.ebay.co.uk";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=ebay.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=info.ebay.co.uk;
+	h=content-transfer-encoding:content-type:from:mime-version:subject:to:
+	cc:content-type:from:subject:to;
+	s=s1; bh=pLVRwhkV1y+j+Pld1JL2z33HRer0L9ur0O2q9wzLq30=;
+	b=X0hxCk4ldqST4Gjyw6oDtDS5eOCIzyfAjg5gfj9Po8Q173TTb2bY1wVFRnqayCL+1jzh
+	nG+WpG3E60cUSk7hefeKREVYyq+X9/MmhWeQ7FwkvbZlMDIZsjFAbSCrhrqZZ7Z/nRuDCQ
+	UigVxmypZK5ndhLqCVTYQ3PzVnUovqpTvMru18CpfIC3kWmTRdbeYJnmxWYS0e4Qtyr80+
+	MDzaS2LeD2MHymwTg8PY01zcP71KYqjgHL8BWGUPNtA5joFCQswo1YLQx6tznxPriCsVR3
+	r7tG540aaR8UXrBh/u/S08aLk3SD9vUOK6s3bw6VmArJZL/sOEBWp2xWfb2CHwEw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-transfer-encoding:content-type:from:mime-version:subject:to:
+	cc:content-type:from:subject:to;
+	s=smtpapi; bh=pLVRwhkV1y+j+Pld1JL2z33HRer0L9ur0O2q9wzLq30=;
+	b=U16u0e2+XP0u3SxfAgPiwgVu6ShJInH79jZVuHiJawr+Va2uO5u8oyqueuh/iHDUlyy8
+	A3BD72+6iEQoXINYCiQ1BQt7q3w/PkweTUmQfF21VcAO8nqhPbQLiU3I8ePvkRK20GfzQX
+	oFbXST2BMO5CeRZM9iIE5QdPJDxKU6rGY=
+Received: by recvd-56b5bc89b5-pvxnl with SMTP id recvd-56b5bc89b5-pvxnl-1-67DA496F-1
+	2025-03-19 04:34:55.000136651 +0000 UTC m=+10739450.186205167
+Received: from MjY2MTg5OTg (unknown)
+	by geopod-ismtpd-14 (SG) with HTTP
+	id HcEEYtV1TUG0OzOiAA0hjA
+	Wed, 19 Mar 2025 04:34:54.925 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Date: Wed, 19 Mar 2025 04:34:55 +0000 (UTC)
+From: eBay <ebay@info.ebay.co.uk>
+Mime-Version: 1.0
+Message-ID: <HcEEYtV1TUG0OzOiAA0hjA@geopod-ismtpd-14>
+Subject: Updates to our User Privacy Notice 2025
+X-SG-EID: 
+ =?us-ascii?Q?u001=2E+Ks5bUSvMZrMeqHdFBdsstb=2F2zhsCFoMJA2epuL3UEKGz94XitZr6daFe?=
+ =?us-ascii?Q?0nBqqxMuYf0NElNNCJ7DgVJpFN+hcVdnzxiw=2FsU?=
+ =?us-ascii?Q?krEqAndHflUGk2t+SPkUwou+Yjc=2FAFbQbknMPJO?=
+ =?us-ascii?Q?BS8gtHEcWjxSPkoqNVD5o6YS9P5jjwXZhNkzpvc?=
+ =?us-ascii?Q?RLWC+BKHYncA894ciE9gl6FMagVKq+bTCc+77ix?=
+ =?us-ascii?Q?tnkDnyMo+XnIoavy1+8Jt4=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2ESdBcvi+Evd=2FbQef8eZF3BpTL9BgbK5wfSJMJGMsmprDXKQOYzrAJkLf9P?=
+ =?us-ascii?Q?LlAZV0iZudxyUwymS6BH3VwyLPAI1L8HbpgxCcy?=
+ =?us-ascii?Q?qewOWXR0A1oBDBVOzRovNGBuhKw51Gb+SEnoIxc?=
+ =?us-ascii?Q?LzraYZLIGk9rtcTHXuaz5nUKil64vnjiibP1Y8D?=
+ =?us-ascii?Q?UgaFPseMVx38JDrcydp3EjCzFSodkZ=2F3usAuTYR?=
+ =?us-ascii?Q?HpJPOehy5XWnGUAG67OEilIDLGKu4KDQ2ru7KcG?=
+ =?us-ascii?Q?Fz4vUOpcTb4cXJ4ovLB5HIZ22ySv3mmu9Ruc8+g?=
+ =?us-ascii?Q?+G4SX=2FizP6bSetonyqzakrJOmX3PL?=
+To: "whackysea0762@gmail.com" <whackysea0762@gmail.com>
+X-Entity-ID: u001.tan99iPbch0FM048JqRBXw==
+
+<!DOCTYPE html>
+<!--0e08c0b3-a234-48fe-b91d-55b76ff0b7f8_v5-->
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+  </head>
+  <body yahoo=3D"fix">
+    <!--7513f981-cfea-47bb-a70f-186f71ff3142_START--><!DOCTYPE html PUBLIC =
+"-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/x=
+html1-transitional.dtd">
+<html xmlns=3D"http://www.w3.org/1999/xhtml"
+xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" lang=3D"en-GB" xml:lang=
+=3D"en-GB">
+<head>
+<!--[if !mso]><!-->
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />
+<!--<![endif]-->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8" />
+<meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1.=
+0" />
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />
+<meta name=3D"ProgId" content=3D"Word.Document" />
+<meta name=3D"color-scheme" content=3D"light dark only" />
+<meta name=3D"supported-color-schemes" content=3D"light dark only" />
+<title>eBay Newsletter</title>
+<!--| START: style/style |-->
+<style type=3D"text/css">
+@media handheld, only screen and (-webkit-min-device-pixel-ratio:3.0) and (=
+max-width:1080px), screen and (max-width:480px){@media {div.generic{min-wid=
+th:100vw!important;}}}
+</style>
+<style type=3D"text/css">
+[class~=3D"x_fallbackfont"]{font-family:Arial,sans-serif!important;}
+</style>
+<style type=3D"text/css">
+:root{color-scheme:light dark only;supported-color-schemes:light dark only;=
+}
+</style>
+<style type=3D"text/css">
+body{margin:0;padding:0;}
+table,td{border-collapse:collapse;border-spacing:0;mso-table-lspace:0pt;mso=
+-table-rspace:0pt;}
+.ExternalClass *{line-height:100%;margin:0px;padding:0px;}
+img{display:block!important;}
+a{text-decoration:none;}
+a,td{-webkit-text-size-adjust:none;}
+th{font-weight:normal;padding:0px;margin:0px;}
+button{font-weight:normal;padding:0px;margin:0px;}
+h1,h2,h3,h4,h5,h6,p{margin:0;}
+a[x-apple-data-detectors]{color:inherit!important;text-decoration:none!impo=
+rtant;font-size:inherit!important;font-family:inherit!important;font-weight=
+:inherit!important;line-height:inherit!important;}
+@font-face{
+font-family:"Market Sans";
+src:url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regu=
+lar-WebS.eot');
+src:url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regu=
+lar-WebS.eot?#iefix') format('embedded-opentype'), url('https://ir.ebaystat=
+ic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regular-WebS.woff2') format('wof=
+f2'), url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Re=
+gular-WebS.woff') format('woff'), url('https://ir.ebaystatic.com/cr/v/c1/ma=
+rket-sans/v1.0/MarketSans-Regular-WebS.ttf') format('truetype'), url('https=
+://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Regular-WebS.svg#M=
+arketSans-Regular-WebS') format('svg');
+font-weight:normal;
+font-style:normal;
+}
+@font-face {
+font-family:"Market Sans";
+src:url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Semi=
+Bold-WebS.eot');
+src:url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-Semi=
+Bold-WebS.eot?#iefix') format('embedded-opentype'), url('https://ir.ebaysta=
+tic.com/cr/v/c1/market-sans/v1.0/MarketSans-SemiBold-WebS.woff2') format('w=
+off2'), url('https://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-=
+SemiBold-WebS.woff') format('woff'), url('https://ir.ebaystatic.com/cr/v/c1=
+/market-sans/v1.0/MarketSans-SemiBold-WebS.ttf') format('truetype'), url('h=
+ttps://ir.ebaystatic.com/cr/v/c1/market-sans/v1.0/MarketSans-SemiBold-WebS.=
+svg#MarketSans-SemiBold-WebS') format('svg');
+font-weight:bold;
+font-style:normal;
+}
+[style*=3D'Market Sans']{font-family:'Market Sans',Helvetica,Arial,sans-ser=
+if!important;}
+div.WordSection1 > div > table.MsoNormalTable > tbody > tr > td > div > tab=
+le.MsoNormalTable{width:600px!important;}
+div.WordSection1 table.MsoNormalTable{width:initial!important;}
+.noWrap{white-space:nowrap!important;}
+.d-noWrap{white-space:nowrap;}
+.show_on_mobile,.de_footer{display:none!important;height:0px;max-height:0px=
+;mso-hide:all;}
+@media handheld, only screen and (-webkit-min-device-pixel-ratio:3.0) and (=
+max-width:1080px), screen and (max-width:480px){
+img{display:block!important;}
+div.generic{min-width:calc(100vw - 30px)!important;}
+.backgroundnone{background-image:none!important;background-color:#ffffff!im=
+portant;background:#ffffff!important;}
+.hide{display:none!important;font-size:0!important;max-height:0!important;l=
+ine-height:0!important;}
+.de_footer{display:block!important;width:100%!important;max-height:none!imp=
+ortant;height:auto!important;overflow:visible!important;float:none!importan=
+t;}
+.show_on_mobile{display:block!important;width:auto!important;max-height:non=
+e!important;height:auto!important;overflow:visible!important;float:none!imp=
+ortant;}
+.de_footer table,.de_footer td{max-height: none!important;height: auto!impo=
+rtant;overflow: visible!important;float: none!important;}
+.de_footer table{display:table!important;width:100%!important;}
+.de_footer td{display:block!important;}
+.break{display:block!important;width:100%!important;height:1px!important;li=
+ne-height:1px!important;min-height:1px!important;max-height:1px!important;}
+.linebreak{display:block!important;width:100%!important;}
+.floatleft{float:left!important;}
+.floatright{float:right!important;}
+.floatoff{float:none!important;}
+.heightauto{height:auto!important;}
+.fullheight{height:100%!important;}
+.widthauto{width:auto!important;}
+.fullwidth{width:100%!important;}
+.halfwidth{width:50%!important;}
+.imgfullwidth{width:100%!important;height:auto!important;}
+.imgfullheight{width:auto!important;height:100%!important;}
+.perc10{width:10%!important;}
+.perc20{width:20%!important;}
+.perc30{width:30%!important;}
+.alc{text-align:center!important;}
+.all{text-align:left!important;}
+.alr{text-align:right!important;}
+.m-noWrap{white-space:nowrap!important;}
+.d-noWrap{white-space:normal!important;}
+.tablewidth300{width:300px!important;}
+.tablewidth280{width:280px!important;}
+.fs12{font-size:12px!important;line-height:1.3!important;}
+.fs14{font-size:14px!important;line-height:1.3!important;}
+.fs16{font-size:16px!important;line-height:1.3!important;}
+.fs20{font-size:20px!important;line-height:1.3!important;}
+.fs22{font-size:22px!important;line-height:1.3!important;}
+.fs24{font-size:24px!important;line-height:1.3!important;}
+.fs30{font-size:30px!important;line-height:1.3!important;}
+.fs48{font-size:48px!important;line-height:1.3!important;}
+.lhHl{line-height:1.3!important;}
+.lhSl{line-height:1.5!important;}
+.w50{width:50px!important;}
+.w60{width:60px!important;}
+.w97{width:97px!important;}
+.w100{width:100px!important;}
+.w110{width:110px!important;}
+.w150{width:150px!important;}
+.w178{width:178px!important;}
+.w180{width:180px!important;}
+.w200{width:200px!important;}
+.w250{width:250px!important;}
+.w260{width:260px!important;}
+.w268{width:268px!important;}
+.w280{width:280px!important;}
+.w300{width:300px!important;}
+.h50{height:50px!important;}
+.h100{height:100px!important;}
+.h150{height:150px!important;}
+.h160{height:160px!important;}
+.mt16{margin-top:16px!important;}
+.mt24{margin-top:24px!important;}
+.mt32{margin-top:32px!important;}
+.mb16{margin-bottom:16px!important;}
+.mb24{margin-bottom:24px!important;}
+.mb32{margin-bottom:32px!important;}
+.p0{padding:0px!important;}
+.p4{padding:4px!important;}
+.p5{padding:5px!important;}
+.p8{padding:8px!important;}
+.p10{padding:10px!important;}
+.p15{padding:15px!important;}
+.p16{padding:16px!important;}
+.p20{padding:20px!important;}
+.p24{padding:24px!important;}
+.p25{padding:25px!important;}
+.p30{padding:30px!important;}
+.p32{padding:32px!important;}
+.p35{padding:35px!important;}
+.pt0{padding-top:0px!important;}
+.pt4{padding-top:4px!important;}
+.pt5{padding-top:5px!important;}
+.pt8{padding-top:8px!important;}
+.pt10{padding-top:10px!important;}
+.pt15{padding-top:15px!important;}
+.pt16{padding-top:16px!important;}
+.pt20{padding-top:20px!important;}
+.pt24{padding-top:24px!important;}
+.pt25{padding-top:25px!important;}
+.pt30{padding-top:30px!important;}
+.pt32{padding-top:32px!important;}
+.pt35{padding-top:35px!important;}
+.pt40{padding-top:40px!important;}
+.pr0{padding-right:0px!important;}
+.pr4{padding-right:4px!important;}
+.pr5{padding-right:5px!important;}
+.pr8{padding-right:8px!important;}
+.pr10{padding-right:10px!important;}
+.pr15{padding-right:15px!important;}
+.pr16{padding-right:16px!important;}
+.pr20{padding-right:20px!important;}
+.pr24{padding-right:24px!important;}
+.pr25{padding-right:25px!important;}
+.pr30{padding-right:30px!important;}
+.pr32{padding-right:32px!important;}
+.pr35{padding-right:35px!important;}
+.pb0{padding-bottom:0px!important;}
+.pb4{padding-bottom:4px!important;}
+.pb5{padding-bottom:5px!important;}
+.pb8{padding-bottom:8px!important;}
+.pb10{padding-bottom:10px!important;}
+.pb15{padding-bottom:15px!important;}
+.pb16{padding-bottom:16px!important;}
+.pb20{padding-bottom:20px!important;}
+.pb24{padding-bottom:24px!important;}
+.pb25{padding-bottom:25px!important;}
+.pb30{padding-bottom:30px!important;}
+.pb32{padding-bottom:32px!important;}
+.pb35{padding-bottom:35px!important;}
+.pb40{padding-bottom:40px!important;}
+.pl0{padding-left:0px!important;}
+.pl4{padding-left:4px!important;}
+.pl5{padding-left:5px!important;}
+.pl8{padding-left:8px!important;}
+.pl10{padding-left:10px!important;}
+.pl15{padding-left:15px!important;}
+.pl16{padding-left:16px!important;}
+.pl20{padding-left:20px!important;}
+.pl24{padding-left:24px!important;}
+.pl25{padding-left:25px!important;}
+.pl30{padding-left:30px!important;}
+.pl32{padding-left:32px!important;}
+.pl35{padding-left:35px!important;}
+.borderleft{border-left:1px solid #C7C7C7!important;}
+.borderright{border-right:1px solid #C7C7C7!important;}
+.bl0{border-left:0px solid transparent!important;}
+.br0{border-right:0px solid transparent!important;}
+.bt0{border-top:0px solid transparent!important;}
+.bb0{border-bottom:0px solid transparent!important;}
+.bb10{border-bottom:10px!important;border-style:solid!important;}
+.bb16{border-bottom:16px!important;border-style:solid!important;}
+.bb24{border-bottom:24px!important;border-style:solid!important;}
+.bb32{border-bottom:32px!important;border-style:solid!important;}
+.noradius{border-radius:initial!important;}
+.radius8{border-radius:8px!important;}
+.radius20{border-radius:20px!important;}
+.topradius8{border-top-left-radius:8px!important;border-top-right-radius:8p=
+x!important;}
+.bottomradius8{border-bottom-left-radius:8px!important;border-bottom-right-=
+radius:8px!important;}
+img.imgval{min-height:0px!important;max-height:calc(0px + 160% - 1.59px)!im=
+portant;}
+.opacity{opacity:0!important;}
+.valignbottom{vertical-align:bottom!important;}
+.valignmiddle{vertical-align:middle!important;}
+.valigntop{vertical-align:top!important;}
+.th{display:table-header-group!important;}
+}
+</style>
+<style type=3D"text/css">
+a:-webkit-any-link:focus{outline-offset:0px!important;}
+a:focus,.focus:focus{outline:3px solid #000000!important;padding:0px!import=
+ant;}
+.focusFb:focus{outline:3px solid #00FF00!important;}
+.focusTw:focus,.focusPin:focus,.focusInst:focus,.focusYt:focus{outline:3px =
+solid #000000!important;padding:0px!important;}
+img.focus{display:inline-block!important;}
+.button tr td p a:focus{transition:none;}
+.focus__content:focus{outline:none;}
+@media handheld, only screen and (-webkit-min-device-pixel-ratio:3.0) and (=
+max-width:1080px), screen and (max-width:480px){a.focus,img.focus{display:i=
+nline-block!important;}}
+</style>
+<style type=3D"text/css">
+.button,.button tr td p a{transition:0.4s;animation-duration:1.3s;animation=
+-timing-function:ease-in-out;animation-iteration-count:1;}
+.button tr td p a{transition:0.4s;}
+</style>
+<style type=3D"text/css">
+@media (prefers-color-scheme: dark) {
+.generic,.wrapperMod{background-color:#333333;}
+a:focus,.focus:focus{outline:3px solid #FFFFFF!important;padding:0px!import=
+ant;}
+.focusFb:focus,.focusTw:focus,.focusPin:focus,.focusInst:focus,.focusYt:foc=
+us{outline:3px solid #FFFFFF!important;padding:0px!important;}
+img{color:#FFFFFF!important;}
+.headerMod,.preheaderMod,.preheaderMod+table[class~=3D"imgfullwidth"],.preh=
+eaderMod+table[class~=3D"x_imgfullwidth"],.placeholderMod,.footerNavModAU,.=
+footerNavModDE,.footerDividerMod,.footerSocialMod,.footerTermsMod,.footerMo=
+d,.gmailFixMod{background-color:#171717;}
+.preheaderMod a,.headerMod a,.footerMod div,.footerMod p,.footerNavModAU p,=
+.footerNavModAU a,.footerNavModDE a{color:#FFFFFF!important;}
+.footerMod a{color:#5CABFF!important;}
+.whiteText{color:#FFFFFF!important;}
+.dark-image{display:block!important;width:auto!important;overflow:visible!i=
+mportant;float:none!important;max-height:inherit!important;max-width:inheri=
+t!important;line-height:auto!important;margin-top:0px!important;visibility:=
+inherit!important;}
+.light-image,img.light-image{display:none!important;}
+}
+</style>
+<style type=3D"text/css">.button1:hover {
+background-color: #ffffff!important;
+box-shadow: inset 0 0 0 25px #ffffff;
+border-color: #3665F3!important;
+}
+.button1:hover tr td p a {
+color: #3665F3!important;
+}
+.focus1:focus {
+outline: 3px solid #FFFFFF!important;
+padding: 0px!important;
+}
+.gmailFixMod,.footerSocialMod, .footerMod, .preheaderMod, .headerMod {
+background-color: #F7F7F7;
+}
+.textColor {
+color: #414141 !important;
+}
+@media handheld,
+only screen and (-webkit-min-device-pixel-ratio:3) and (max-width:1080px),
+screen and (max-width:480px) {
+.perc10 {
+max-width: 20px !important;
+width: 20px !important;
+}
+.perc100 {
+width: 100% !important;
+padding-left: 18px !important;
+}
+}
+</style><style type=3D"text/css">
+@media (prefers-color-scheme: dark) {
+.gmailFixMod,.footerSocialMod, .footerMod, .preheaderMod, .headerMod {backg=
+round-color: #212121;}
+.heroMod { background-color: #212121;}
+.listMod { background-color: #171717;}
+.listMod p { color: #9C9C9C !important;}
+.listMod .bull p { color: #DCDCDC !important;}
+.listMod h2 { color: #DCDCDC !important;}
+.heroMod h1 { color: #DCDCDC !important;}
+.textColor {color: #ABABAB !important; }
+}</style>
+<!--[if gte mso 9]><xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml><![endif]-->
+</head>
+<body class=3D"generic" bgcolor=3D"#F7F7F7">
+<!--| START: global_v3_2/partial/gmail_promo_tab |-->
+<!-- Promotional Banner -->
+<div itemscope=3D"" itemtype=3D"http://schema.org/PromotionCard">
+<meta itemprop=3D"image" content=3D"" />
+</div>
+<!-- Custom Logo -->
+<div itemscope=3D"" itemtype=3D"http://schema.org/Organization">
+<meta itemprop=3D"name" content=3D"eBay" />
+<meta itemprop=3D"logo" content=3D"https://secureir.ebaystatic.com/cr/mscdn=
+/a680da29b203db928c25d0e7a6a03779/ebay_logo_placeholder_176x176.png" />
+</div>
+<!-- Deal Description -->
+<div itemscope=3D"" itemtype=3D"http://schema.org/DiscountOffer">
+<meta itemprop=3D"description" content=3D"" />
+<meta itemprop=3D"discountCode" content=3D"" />
+<meta itemprop=3D"availabilityStarts" content=3D"" />
+<meta itemprop=3D"availabilityEnds" content=3D"" />
+</div>
+<!--| START: global_v3_2/wrapper_top |-->
+<table lang=3D"en-GB" role=3D"article" aria-roledescription=3D"email" aria-=
+label=3D"eBay Newsletter" align=3D"center"
+width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" class=3D"wr=
+apperMod">
+<tr>
+<td align=3D"center">
+<table align=3D"center" width=3D"600" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" class=3D"inWrapperMod fullwidth"
+role=3D"presentation">
+<tr>
+<td align=3D"center">
+<!--| START: preheader |-->
+<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" class=3D"preheaderMod fullwidth" role=3D"presentation">
+<tr>
+<td height=3D"1" style=3D"font-size:1px;line-height:1px;max-height:1px;">
+<p style=3D"margin:0;font-size:1px;line-height:1px;max-height:1px;color:#F7=
+F7F7;display:none;visibility:hidden;overflow:hidden;" aria-hidden=3D"true">
+How we=E2=80=99re keeping your data safe.
+</p>
+</td>
+</tr>
+</table>
+<!--| START: header |-->
+<!-- Start Below img tag is added to support open tracking, put it below pr=
+eheader -->
+<img src=3D"https://www.ebayadservices.com/marketingtracking/v1/impression?=
+mkevt=3D4&mkpid=3D2&emsid=3D0&siteId=3D3&mkcid=3D8&bu=3D44637644438&osub=3D=
+e824d72b8363ef40fb6bf2086822ded7%257E1741902016155EM_T_ALL_UK_T&segname=3D1=
+741902016155EM_T_ALL_UK_T&crd=3D20250318193000&ch=3Dosgood" alt=3D"" style=
+=3D"border:0; height:1px; display:block; line-height:1px;" width=3D"1" heig=
+ht=3D"1" border=3D"0" />
+<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" class=3D"headerMod fullwidth"
+role=3D"presentation">
+<tr>
+<td style=3D"font-size:1px;line-height:1px;padding:24px 16px 24px 16px;" al=
+ign=3D"center">
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center" role=3D"presentation">
+<tr>
+<td style=3D"font-size:1px;line-height:1px;" align=3D"center">
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center"
+role=3D"presentation">
+<tr>
+<th width=3D"80"
+style=3D"font-size:1px;line-height:1px;vertical-align:bottom;" valign=3D"bo=
+ttom" align=3D"left" class=3D"floatleft fullwidth">
+<table width=3D"80" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"left"
+role=3D"presentation">
+<tr>
+<td height=3D"40" style=3D"font-size:1px;line-height:1px;vertical-align:bot=
+tom;"
+valign=3D"bottom" class=3D"heightauto">
+<a href=3D"https://www.ebay.co.uk/?mkevt=3D1&mkpid=3D2&emsid=3D0&mkcid=3D8&=
+bu=3D44637644438&osub=3De824d72b8363ef40fb6bf2086822ded7%257E1741902016155E=
+M_T_ALL_UK_T&segname=3D1741902016155EM_T_ALL_UK_T&crd=3D20250318193000&ch=
+=3Dosgood"
+style=3D"text-decoration:none;display:inline-block;" class=3D"focus">
+<span class=3D"focus__content" tabindex=3D"-1">
+<img src=3D"https://secureir.ebaystatic.com/cr/mscdn/a680da29b203db928c25d0=
+e7a6a03779/ebay_logo_placeholder.png" width=3D"80"
+height=3D"32" alt=3D"eBay"
+border=3D"0" style=3D"display:inline-block!important;font-family:Helvetica,=
+Arial,sans-serif,'Market Sans';font-size:14px;line-height:17px;color:#00000=
+0;font-weight:bold;text-decoration:none;"
+class=3D"focus logo"/>
+</span>
+</a>
+</td>
+</tr>
+</table>
+</th>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--| START: global_v3_2/categories/Hero |-->
+<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" bgcolor=3D"#F7F7F7" class=3D"heroMod01 heroMod fullwidth" role=
+=3D"presentation">
+<tr>
+<td
+style=3D"font-size:1px;line-height:1px;vertical-align:top;" valign=3D"top" =
+align=3D"center">
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"left" role=3D"presentation" >
+<tr>
+<td height=3D"40" style=3D"font-size:1px;line-height:1px;padding:40px 16px =
+64px 16px;" align=3D"left" class=3D"pl16 pr16">
+<h1 style=3D"mso-line-height-rule:exactly;margin:0;line-height:40px;font-fa=
+mily:Helvetica,Arial,sans-serif,'Market Sans';font-size:30px;color:#111820;=
+font-weight:bold;text-decoration:none;" align=3D"left" class=3D"">
+<span role=3D'text'>Dear whacky_67,</span>
+</h1>
+</td>
+</tr>
+</table>
+</td>
+</tr></table>
+<!--| START: global_v3_2/categories/List |-->
+<table width=3D"600" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" align=
+=3D"center" role=3D"presentation" class=3D"listMod01 listMod fullwidth" bgc=
+olor=3D"#ffffff">
+<tr>
+<td style=3D"font-size:1px;line-height:1px;" align=3D"center">
+<table width=3D"568" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" align=
+=3D"center" role=3D"presentation"
+class=3D"fullwidth">
+<tr>
+<td
+style=3D"font-size:1px;line-height:1px;vertical-align:top;" valign=3D"top" =
+align=3D"center">
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center" role=3D"presentation">
+<tr>
+<td height=3D"19" style=3D"font-size:1px;line-height:1px;padding:32px 16px =
+24px 0px;" align=3D"left" class=3D"pl16 pr16">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:19px;font-fam=
+ily:-apple-system,BlinkMacSystemFont,-webkit-system-font,Roboto,Arial,sans-=
+serif;font-size:14px;color:#707070;font-weight:normal;text-decoration:none;=
+" align=3D"left" class=3D"fallbackfont">
+We=E2=80=99re updating our <a href=3D"http://pages.ebay.co.uk/help/policies=
+/privacy-policy.html?mkevt=3D1&mkpid=3D2&emsid=3De99011.m2.l1&mkcid=3D8&bu=
+=3D44637644438&osub=3De824d72b8363ef40fb6bf2086822ded7%257E1741902016155EM_=
+T_ALL_UK_T&segname=3D1741902016155EM_T_ALL_UK_T&crd=3D20250318193000&ch=3Do=
+sgood" style=3D"text-decoration:underline;">User Privacy Notice</a> to make=
+ it easier to understand how we use personal data. Ensuring your data is se=
+cure is our top priority, and we want to make sure you have the latest deta=
+ils. The new updates will take effect on 21 April 2025=E2=80=94there=E2=80=
+=99s nothing you need to do. </p>
+</td>
+</tr>
+<tr>
+<td height=3D"27" style=3D"font-size:1px;line-height:1px;padding:0px 0px 0p=
+x 0px;" align=3D"left" class=3D"pb0 pl16 pr16">
+<h2 style=3D"mso-line-height-rule:exactly;margin:0;line-height:27px;font-fa=
+mily:Helvetica,Arial,sans-serif,'Market Sans';font-size:20px;color:#111820;=
+font-weight:bold;text-decoration:none;" align=3D"left" class=3D" fs20">
+Key updates:
+</h2>
+</td>
+</tr>
+<tr>
+<td style=3D"font-size:1px;line-height:1px;" align=3D"center" class=3D"pl16=
+">
+<!--[if gte mso 9]>
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center" role=3D"list">
+<tr>
+<td style=3D"font-size:1px;line-height:1px;" align=3D"center">
+<![endif]-->
+<!--[if !mso]><!-->
+<ul style=3D"margin:0;padding:0;list-style-type:none;" role=3D"list">
+<!--<![endif]-->
+<!--[if !mso]><!-->
+<li style=3D"margin:0;padding:0;list-style-type:none;" class=3D"pr16" role=
+=3D"listitem">
+<!--<![endif]-->
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center"
+role=3D"listitem">
+<tr>
+<td width=3D"20px" height=3D"21"
+style=3D"font-size:1px;line-height:1px;padding:8px 0px 0px 8px;vertical-ali=
+gn:top;"
+valign=3D"top" align=3D"left" class=3D"perc10 bull">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:21px;font-fam=
+ily:Helvetica,Arial,sans-serif,'Market Sans';font-size:14px;color:#111820;f=
+ont-weight:bold;text-decoration:none;mso-ansi-font-size:21px;"
+align=3D"left">
+<span style=3D"font-size:28px;display:block;mso-ansi-font-size:21px;">&bull=
+;</span>
+</p>
+</td>
+<td width=3D"94%" height=3D"21"
+style=3D"font-size:1px;line-height:1px;padding:8px 0px 0px 4px;vertical-ali=
+gn:top;"
+valign=3D"top" align=3D"left" class=3D"pr0 perc100">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:21px;font-fam=
+ily:-apple-system,BlinkMacSystemFont,-webkit-system-font,Roboto,Arial,sans-=
+serif;font-size:14px;color:#707070;font-weight:normal;text-decoration:none;=
+"
+align=3D"left" class=3D"fallbackfont">
+More info about using our services through third-party applications, as wel=
+l as details on blockchain technology and controllership.
+</p>
+</td>
+</tr>
+</table>
+<!--[if !mso]><!-->
+</li>
+<!--<![endif]-->
+<!--[if !mso]><!-->
+<li style=3D"margin:0;padding:0;list-style-type:none;" class=3D"pr16" role=
+=3D"listitem">
+<!--<![endif]-->
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center"
+role=3D"listitem">
+<tr>
+<td width=3D"6%" height=3D"21"
+style=3D"font-size:1px;line-height:1px;padding:8px 0px 0px 8px;vertical-ali=
+gn:top;"
+valign=3D"top" align=3D"left" class=3D"perc10 bull">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:21px;font-fam=
+ily:Helvetica,Arial,sans-serif,'Market Sans';font-size:14px;color:#111820;f=
+ont-weight:bold;text-decoration:none;mso-ansi-font-size:21px;"
+align=3D"left">
+<span style=3D"font-size:28px;display:block;mso-ansi-font-size:21px;">&bull=
+;</span>
+</p>
+</td>
+<td width=3D"94%" height=3D"21"
+style=3D"font-size:1px;line-height:1px;padding:8px 0px 0px 4px;vertical-ali=
+gn:top;"
+valign=3D"top" align=3D"left" class=3D"pr0 perc100">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:21px;font-fam=
+ily:-apple-system,BlinkMacSystemFont,-webkit-system-font,Roboto,Arial,sans-=
+serif;font-size:14px;color:#707070;font-weight:normal;text-decoration:none;=
+"
+align=3D"left" class=3D"fallbackfont">
+A new section on AI, which covers our Responsible AI approach, how we use A=
+I-powered tools and products, and when and how personal data may be used to=
+ help develop AI models.
+</p>
+</td>
+</tr>
+</table>
+<!--[if !mso]><!-->
+</li>
+<!--<![endif]-->
+<!--[if gte mso 9]>
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center" role=3D"list">
+<tr>
+<td style=3D"font-size:1px;line-height:1px;" align=3D"center">
+<![endif]-->
+<!--[if !mso]><!-->
+<li style=3D"margin:0;padding:0;list-style-type:none;" class=3D"pr16" role=
+=3D"listitem">
+<!--<![endif]-->
+<table width=3D"100%" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" alig=
+n=3D"center"
+role=3D"listitem">
+<tr>
+<td width=3D"6%" height=3D"21"
+style=3D"font-size:1px;line-height:1px;padding:8px 0px 0px 8px;vertical-ali=
+gn:top;"
+valign=3D"top" align=3D"left" class=3D"perc10 bull">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:21px;font-fam=
+ily:Helvetica,Arial,sans-serif,'Market Sans';font-size:14px;color:#111820;f=
+ont-weight:bold;text-decoration:none;mso-ansi-font-size:21px;"
+align=3D"left">
+<span style=3D"font-size:28px;display:block;mso-ansi-font-size:21px;">&bull=
+;</span>
+</p>
+</td>
+<td width=3D"94%" height=3D"21"
+style=3D"font-size:1px;line-height:1px;padding:8px 0px 0px 4px;vertical-ali=
+gn:top;"
+valign=3D"top" align=3D"left" class=3D"pr0 perc100">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:21px;font-fam=
+ily:-apple-system,BlinkMacSystemFont,-webkit-system-font,Roboto,Arial,sans-=
+serif;font-size:14px;color:#707070;font-weight:normal;text-decoration:none;=
+"
+align=3D"left" class=3D"fallbackfont">
+Extra details about the personal data we collect, why it=E2=80=99s used and=
+ how it=E2=80=99s shared within the eBay Inc. corporate family, with other =
+businesses, and service providers..
+</p>
+</td>
+</tr>
+</table>
+<!--[if !mso]><!-->
+</li>
+<!--<![endif]-->
+<!--[if !mso]><!-->
+</ul>
+<!--<![endif]-->
+<!--[if gte mso 9]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</td>
+</tr>
+<tr>
+<td height=3D"19" style=3D"font-size:1px;line-height:1px;padding:32px 16px =
+24px 0px;" align=3D"left" class=3D"pl16 pr16">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:19px;font-fam=
+ily:-apple-system,BlinkMacSystemFont,-webkit-system-font,Roboto,Arial,sans-=
+serif;font-size:14px;color:#707070;font-weight:normal;text-decoration:none;=
+" align=3D"left" class=3D"fallbackfont"> If you want to learn more about eB=
+ay's Privacy Principles and our User Privacy Notice, please visit our <a hr=
+ef=3D"https://www.ebayadservices.com/marketingtracking/v1/redirect?mpre=3Dh=
+ttps%3A%2F%2Fwww.ebayinc.com%2Fcompany%2Fprivacy-center%2F&mkevt=3D1&mkpid=
+=3D2&emsid=3De99011.m2.l1&mkcid=3D8&bu=3D44637644438&osub=3De824d72b8363ef4=
+0fb6bf2086822ded7%257E1741902016155EM_T_ALL_UK_T&segname=3D1741902016155EM_=
+T_ALL_UK_T&crd=3D20250318193000&ch=3Dosgood" style=3D"text-decoration:under=
+line;">Privacy Centre</a>.&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:19px;font-fam=
+ily:-apple-system,BlinkMacSystemFont,-webkit-system-font,Roboto,Arial,sans-=
+serif;font-size:14px;color:#707070;font-weight:normal;text-decoration:none;=
+" align=3D"left" class=3D"fallbackfont">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:19px;font-fam=
+ily:-apple-system,BlinkMacSystemFont,-webkit-system-font,Roboto,Arial,sans-=
+serif;font-size:14px;color:#707070;font-weight:normal;text-decoration:none;=
+" align=3D"left" class=3D"fallbackfont">Thank you for being part of the eBa=
+y community as we continue to keep your data secure.&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:19px;font-fam=
+ily:-apple-system,BlinkMacSystemFont,-webkit-system-font,Roboto,Arial,sans-=
+serif;font-size:14px;color:#707070;font-weight:normal;text-decoration:none;=
+" align=3D"left" class=3D"fallbackfont">&nbsp;</p>
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:19px;font-fam=
+ily:-apple-system,BlinkMacSystemFont,-webkit-system-font,Roboto,Arial,sans-=
+serif;font-size:14px;color:#707070;font-weight:normal;text-decoration:none;=
+" align=3D"left" class=3D"fallbackfont">The eBay Global Privacy team </p></=
+td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--| START: footer |-->
+<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" class=3D"footerMod fullwidth" role=3D"presentation" bgcolor=3D"=
+#F5F5F5">
+<tr>
+<td style=3D"font-size:1px;line-height:1px;padding:32px 16px 18px 16px;" al=
+ign=3D"center" class=3D"pt40">
+<table width=3D"568" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" class=3D"fullwidth" role=3D"presentation">
+<tr>
+<td width=3D"50%" style=3D"font-size:1px;line-height:1px;padding:0px 0px 0p=
+x 0px;" align=3D"left">
+<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"left" role=
+=3D"presentation">
+<tr>
+<td style=3D"font-size:1px;line-height:1px;padding:0px 10px 0px 0px;">
+<a href=3D"https://www.ebay.co.uk/ulk/start/shop?mkevt=3D1&mkpid=3D2&emsid=
+=3D0&mkcid=3D8&bu=3D44637644438&osub=3De824d72b8363ef40fb6bf2086822ded7%257=
+E1741902016155EM_T_ALL_UK_T&segname=3D1741902016155EM_T_ALL_UK_T&crd=3D2025=
+0318193000&ch=3Dosgood" style=3D"text-decoration:none;display:inline-block;=
+"
+class=3D"focus focus">
+<span class=3D"focus__content" tabindex=3D"-1">
+<img src=3D"https://secureir.ebaystatic.com/cr/mscdn/ca15e7a97968c0908f749c=
+535d40db26/eBayLogo-fVBOX.png" width=3D"84" alt=3D"eBay" title=3D"eBay" bor=
+der=3D"0" style=3D"display:inline-block!important;font-family:Helvetica,Ari=
+al,sans-serif,'Market Sans';font-size:14px;line-height:17px;color:#000000;f=
+ont-weight:bold;text-decoration:none;"/>
+</span>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<table width=3D"600" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" class=3D"footerMod fullwidth" role=3D"presentation" bgcolor=3D"=
+#F5F5F5">
+<tr>
+<td style=3D"font-size:1px;line-height:1px;padding:0px 16px 24px 16px;"
+align=3D"center" class=3D"pb48">
+<table width=3D"568" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=
+=3D"center" class=3D"fullwidth"
+role=3D"presentation">
+<tr>
+<td height=3D"16" style=3D"font-size:1px;line-height:1px;padding:8px 0px 0p=
+x 0px;" align=3D"center">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:22px;font-fam=
+ily:Helvetica,Arial,sans-serif,'Market Sans';font-size:12px;color:#414141;f=
+ont-weight:normal;text-decoration:none;-webkit-font-smoothing:antialiased;-=
+moz-osx-font-smoothing:grayscale; text-align:left;"
+align=3D"left" class=3D"lm_copy">
+Learn about <a href=3D"https://pages.ebay.co.uk/help/account/protecting-acc=
+ount.html?mkevt=3D1&mkpid=3D2&emsid=3D0&mkcid=3D8&bu=3D44637644438&osub=3De=
+824d72b8363ef40fb6bf2086822ded7%257E1741902016155EM_T_ALL_UK_T&segname=3D17=
+41902016155EM_T_ALL_UK_T&crd=3D20250318193000&ch=3Dosgood" style=3D"text-de=
+coration:underline;color:#111820;">account protection</a>.
+</p>
+</td>
+</tr>
+<tr>
+<td height=3D"16" style=3D"font-size:1px;line-height:1px;padding:0px 0px 0p=
+x 0px;" align=3D"center">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:22px;font-fam=
+ily:Helvetica,Arial,sans-serif,'Market Sans';font-size:12px;color:#414141;f=
+ont-weight:normal;text-decoration:none;-webkit-font-smoothing:antialiased;-=
+moz-osx-font-smoothing:grayscale; text-align:left;"
+align=3D"left" class=3D"lm_copy">
+If you have a question, <a href=3D"https://www.ebay.co.uk/help/home?mkevt=
+=3D1&mkpid=3D2&emsid=3D0&mkcid=3D8&bu=3D44637644438&osub=3De824d72b8363ef40=
+fb6bf2086822ded7%257E1741902016155EM_T_ALL_UK_T&segname=3D1741902016155EM_T=
+_ALL_UK_T&crd=3D20250318193000&ch=3Dosgood" style=3D"text-decoration:underl=
+ine;color:#111820;">contact us</a>.
+</p>
+</td>
+</tr>
+<tr>
+<td height=3D"16" style=3D"font-size:1px;line-height:1px;padding:8px 0px 0p=
+x 0px;" align=3D"center">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:22px;font-fam=
+ily:Helvetica,Arial,sans-serif,'Market Sans';font-size:12px;color:#414141;f=
+ont-weight:normal;text-decoration:none;-webkit-font-smoothing:antialiased;-=
+moz-osx-font-smoothing:grayscale; text-align:left;"
+align=3D"left" class=3D"lm_copy">
+eBay (UK) Limited, registered in England and Wales with number 03726028, re=
+gistered office at 1 More London Place, London, SE1 2AF, United Kingdom
+</p>
+</td>
+</tr>
+<tr>
+<td height=3D"16" style=3D"font-size:1px;line-height:1px;padding:8px 0px 0p=
+x 0px;" align=3D"center">
+<p style=3D"mso-line-height-rule:exactly;margin:0;line-height:22px;font-fam=
+ily:Helvetica,Arial,sans-serif,'Market Sans';font-size:12px;color:#414141;f=
+ont-weight:normal;text-decoration:none;-webkit-font-smoothing:antialiased;-=
+moz-osx-font-smoothing:grayscale; text-align:left;"
+align=3D"left" class=3D"lm_copy">
+=C2=A9 1995-2025 eBay Inc. or its affiliates
+</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!--| START: global_v3_2/gmailfix_simple |-->
+<table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=3D"0" cl=
+ass=3D"gmailFixMod hide" role=3D"presentation"><tr><td style=3D"font-size:1=
+px;line-height:1px;min-width:600px;width:600px;" aria-hidden=3D"true"><img =
+src=3D"https://secureir.ebaystatic.com/cr/mscdn/a680da29b203db928c25d0e7a6a=
+03779/spacer.gif" width=3D"600" height=3D"1" border=3D"0" alt=3D"" style=3D=
+"display:block;min-width:600px;width:600px;visibility:hidden;" role=3D"pres=
+entation"/></td></tr></table>
+<table width=3D"600" align=3D"center" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0" class=3D"gmailFixMod fullwidth" role=3D"presentation"><tr><td s=
+tyle=3D"font-size:1px;line-height:1px;min-width:600px;" height=3D"5" width=
+=3D"600" class=3D"hide" aria-hidden=3D"true"><img src=3D"https://secureir.e=
+baystatic.com/cr/mscdn/a680da29b203db928c25d0e7a6a03779/spacer.gif" height=
+=3D"5" width=3D"600" class=3D"hide" border=3D"0" alt=3D"" style=3D"display:=
+block;max-height:5px;min-height:5px;width:600px;min-width:600px;visibility:=
+hidden;" role=3D"presentation"/></td></tr></table>
+<!-- gmail on ios fix -->
+<div style=3D"display:none;white-space:nowrap;font:15px courier;line-height=
+:0;">
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
+;
+</div>
+<!--| START: global_v3_2/wrapper_bottom |-->
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+=20
+    <!--7513f981-cfea-47bb-a70f-186f71ff3142_END-->
+  </body>
+</html>

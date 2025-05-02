@@ -1,0 +1,37 @@
+I have a little java applet for creating sha1sums:
+http://blogs.sun.com/bblfish/entry/my_bloomin_friends
+
+Let me know if I got something wrong!
+
+Henry
+
+
+On 3 Oct 2007, at 11:17, Danny Ayers wrote:
+
+> On 03/10/2007, Stuart Yeates  wrote:
+>
+>> mbox_sha1sum is the hash of the mbox (= email address) rather than
+>> name.
+>
+> Actually the hash of the mbox *URI*, so it's "mailto:"+email address
+> (I got caught out by this last time).
+>
+> btw, the FOAF spec has a handy link to a list of sha1 generators:
+>
+> http://xmlns.com/foaf/spec/#term_mbox_sha1sum
+>
+> http://www.intertwingly.net/blog/1545.html
+>
+> (Thanks Rob!)
+>
+> Cheers,
+> Danny.
+>
+> -- 
+>
+> http://dannyayers.com
+> _______________________________________________
+> doap-interest mailing list
+> wegl-zxehrszy@lists.gnomehack.com
+> http://lists.usefulinc.com/mailman/listinfo/doap-interest
+
